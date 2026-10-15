@@ -1,6 +1,6 @@
-import 'documento-texto.dart';
+import 'documento.dart';
 
-class DocumentoExcel implements DocumentoTexto {
+class DocumentoExcel implements Documento {
   @override
   String generar(List<int> calificaciones) {
     return 'Calificaciones en Excel: ${calificaciones.join(',')}';
