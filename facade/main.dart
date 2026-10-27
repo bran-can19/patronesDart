@@ -1,3 +1,4 @@
+import "cine-facore.dart";
 import "proyector.dart";
 import "reproductor.dart";
 import "sistema-audio.dart";
@@ -5,22 +6,25 @@ import "sistema-audio.dart";
 
 
 void main(){
-  final proyector = Proyector();
-  final audio = SistemaAudio();
-  final reproductor = Reproductor();
+  
+  final cine = CineFacade(
+    Proyector(),
+    SistemaAudio(),
+    Reproductor()
+  );
+
+
 
   // Iniciar la película
-  proyector.encender();
-  audio.encender();
-  audio.ajustarVolumen(25);
-  reproductor.reproducir('Coraline');
-  // Sin facade, se llaman a cada clase y método necesarios
-  // para lograr reproducir la película
+  cine.verPelicula("La vengasa del charro negro", 50);
 
 
   // Detener la película
-  reproductor.detener();
-  audio.apagar();
-  proyector.apagar();
+  cine.terminarReproduccion();
+  
+  //la facchada coordinada todos los pasos para lograr el objetivo
+  //El usuario (dev) solo conoce los metodos sensillos (ver pelicula...)
+  //El procedimiento se concreta en una sola clase (facade)
+  //El usuario (dev) no nesesita conocer a la clase involucradas
 
 }
